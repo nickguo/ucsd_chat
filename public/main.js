@@ -264,7 +264,7 @@ function getUsernameColor (username) {
 $window.keydown(function (event) {
     // Auto-focus the current input when a key is typed
     if (!(event.ctrlKey || event.metaKey || event.altKey))  {
-        //$currentInput.focus();
+        $currentInput.focus();
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
@@ -336,12 +336,12 @@ $window.blur( function(e) {
 
 // Focus input when clicking anywhere on login page
 $loginPage.click(function () {
-    //$currentInput.focus();
+    $currentInput.focus();
 });
 
 // Focus input when clicking on the message input's border
 $inputMessage.click(function () {
-    //$inputMessage.focus();
+    $inputMessage.focus();
 });
 
 
@@ -353,7 +353,7 @@ socket.on('valid login', function (data) {
         $chatPage.show();
         $loginPage.off('click');
         $("#test").show();
-        $currentInput = $inputMessage;
+        $currentInput = $inputMessage.focus();
     connected = true;
     // Display the welcome message
     $(".chatRoomName").append(topic + " chatroom – Triton Chat");
