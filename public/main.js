@@ -54,9 +54,11 @@ function setUsername () {
     if (username) {
         $userCont.animate({
             'marginTop' : "-=100px"
-        }).blur();
-        $topicCont.delay(300).fadeIn();
-        $currentInput = $topicInput.delay(200).focus();
+        });
+        $topicCont.delay(300).fadeIn( function() {
+            $topicInput.focus()});
+        $usernameInput.blur();
+        $currentInput = $topicInput.focus();
 
         // Tell the server your username
         socket.emit('add user', username);
