@@ -116,21 +116,24 @@ ul {
 .chat.page {
     display: none;
     height: 100%;
+    color: #000;
 }
 
 /* Font */
 
 .messages {
     font-size: 150%;
+    background-color: #FFF;
 }
 
 .inputMessage {
     font-size: 100%;
+    color: #50C1E4;
 }
 
 .log {
-    color: gray;
-    font-size: 70%;
+    color: #000;
+    font-size: 100%;
     margin: 5px;
     text-align: center;
 }
@@ -178,7 +181,7 @@ ul {
 }
 
 .message.typing .messageBody {
-    color: gray;
+    color: #50C1E4;
 }
 
 .username {
@@ -192,7 +195,8 @@ ul {
 /* Input */
 
 .inputMessage {
-    border: 10px solid #000;
+    border: 10px solid #46A8C7;
+    background-color: #FFF;
     bottom: 0;
     height: 60px;
     left: 0;
