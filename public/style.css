@@ -49,7 +49,9 @@ ul {
 /* Login Page */
 
 .login.page {
-    background-color: #000;
+    background-color: #46A8C7;
+    background-image: url("untitled.jpg");
+    background-position: center;
 }
 
 .login.page .form {
@@ -90,20 +92,22 @@ ul {
 .login.page .usernameInput {
     font-size: 200%;
     letter-spacing: 3px;
+    color: #46A8C7;
 }
 
 .login.page .topicInput{
     font-size: 200%;
     letter-spacing: 3px;
+    color: #46A8C7;
 }
 
 .login.page .title, .login.page .usernameInput {
-    color: #fff;
+    color: #46A8C7;
     font-weight: 100;
 }
 
 .login.page .title, .login.page .topicInput{
-    color: #fff;
+    color: #46A8C7;
     font-weight: 100;
 }
 
