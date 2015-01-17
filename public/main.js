@@ -320,7 +320,7 @@ socket.on('valid login', function (data) {
 
 socket.on('invalid login', function(data) {
     username=null;
-    $("#errorMes").show().delay(2000).fadeOut();
+    $("#errorMes").show().delay(1000).fadeOut();
 });
 
 // Whenever the server emits 'new message', update the chat body
