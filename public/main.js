@@ -32,7 +32,7 @@ var socket = io.connect("http://localhost:3000");
 
 //TODO: GET THE ROOM VALUE HERE, SIMILAR TO usernameInput
 socket.on('connect', function() {
-  socket.emit('join room', {room: "hardcode example"});
+    //TODO: NVM, doing it in set topic
 });
 
 function addParticipantsMessage (data) {
@@ -73,7 +73,7 @@ function setTopic (){
         $currentInput = $inputMessage.focus();
 
         //tell server the topic
-        socket.emit('add topic', topic);
+        socket.emit('add topic', {topic: topic});
     }
 
 }

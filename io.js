@@ -18,9 +18,9 @@ io.on('connection', function (socket) {
 
 
   // this function fires immediately after a connection
-  socket.on('join room', function(data) {
+  socket.on('add topic', function(data) {
     // remove all whitespace from the room data
-    var room = data.room.replace(/ /g,"");
+    var room = data.topic.replace(/ /g,"");
     socket.join(room);
     debug("socket on ip: " + socket.handshake.address + " joined: " + room);
   });
