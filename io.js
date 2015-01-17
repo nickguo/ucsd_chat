@@ -21,6 +21,9 @@ pubsub.on('message', function(msg) {
 
 io.on('connection', function (socket) {
   var addedUser = false;
+  debug ("new connection: " + socket.id);
+  console.dir(socket);
+
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
