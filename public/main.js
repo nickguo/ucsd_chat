@@ -356,8 +356,8 @@ socket.on('valid login', function (data) {
         $currentInput = $inputMessage;
     connected = true;
     // Display the welcome message
-    $(".chatRoomName").append(topic + " chatroom – UCSD Chat");
-    var message = "Welcome to the " + topic + " chatroom – UCSD Chat";
+    $(".chatRoomName").append(topic + " chatroom – Triton Chat");
+    var message = "Welcome to the " + topic + " chatroom – Triton Chat";
     log(message, {
         prepend: true
     });
