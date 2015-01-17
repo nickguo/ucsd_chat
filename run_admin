@@ -1,0 +1,2 @@
+javac -cp "admin/httpcomponents-client-4.3.6/lib/*:admin" admin/admin.java > /dev/null 2> /dev/null
+java -cp "admin/httpcomponents-client-4.3.6/lib/*:admin" admin

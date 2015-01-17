@@ -1,7 +1,7 @@
 // Setup basic express server
 var express = require('express');
 var bodyParser = require('body-parser');
-var pubsub = require('./lib/pubsub');
+var admin = require('./lib/admin');
 var debug = require('debug')('chat');
 //var EventEmitter = require('events').EventEmitter;
 
@@ -17,13 +17,14 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 
-app.post('/api/messages', function(req,res) {
+app.post('/admin/boot', function(req,res) {
+  debug('entered admin boot post');
   var body = req.body;
-  pubsub.emit('message', body.message);
-  debug('finish ee emit');
+  admin.emit('boot', body);
+  debug('finish admin boot');
 
   res.json({
-    message: body.message
+    message: "user has been booted"
   });
 });
 

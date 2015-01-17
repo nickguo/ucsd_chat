@@ -1,5 +1,5 @@
 var SocketIO = require('socket.io');
-var pubsub = require('./lib/pubsub');
+var admin = require('./lib/admin');
 var debug = require('debug')('chat');
 
 // create socketIO server
@@ -9,6 +9,29 @@ var io = new SocketIO();
 var usernames = {}; // double dictionary
 var numUsers = {};  // dictionary
 var getRooms = {};
+
+admin.on('boot', function(info) {
+    debug('entered admin boot in io');
+    var room = info.room;
+    var nickname = info.nickname;
+
+    if (room != undefined) {
+      room = room.replace(/ /g,"").toLowerCase();
+    } 
+
+    if (usernames[room] != undefined) {
+      if (usernames[room][nickname] != undefined) {
+        var socket = usernames[room][nickname];
+        io.to(socket.id).emit('new message',
+                              {username: "admin",
+                               message: "you have been booted"});
+        io.to(socket.id).emit('new message',
+                              {username: "admin",
+                               message: "your messsages will no longer be broadcasted"});
+        socket.disconnect('unauthorized');
+      }
+    }
+});
 
 
 io.on('connection', function (socket) {
@@ -21,7 +44,7 @@ io.on('connection', function (socket) {
   socket.on('add topic', function(data) {
     //console.log("GOT ADD TOPIC");
     // remove all whitespace from the room data
-    var room = data.topic.replace(/ /g,"");
+    var room = data.topic.replace(/ /g,"").toLowerCase();
     socket.join(room);
     debug("socket on ip: " + socket.handshake.address + " joined: " + room);
     debug("socket on room: " + room);
@@ -65,8 +88,8 @@ io.on('connection', function (socket) {
     }
     debug("continue from invalid check for: " + socket.username);
 
-    // add the client's username to the global list
-    usernames[socket.room][socket.username] = socket.username;
+    // add the client's username to the global list & save their socket
+    usernames[socket.room][socket.username] = socket;
 
     //console.log("room is: " + socket.room);
     //console.dir(usernames);
