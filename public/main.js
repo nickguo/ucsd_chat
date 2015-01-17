@@ -54,7 +54,7 @@ function setUsername () {
     if (username) {
         $userCont.animate({
             'marginTop' : "-=100px"
-        });
+        }).blur();
         $topicCont.delay(300).fadeIn();
         $currentInput = $topicInput.delay(200).focus();
 
