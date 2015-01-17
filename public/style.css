@@ -120,6 +120,25 @@ ul {
   font-size: 150%;
 }
 
+.chatArea {
+  height: 100%;
+  float: left;
+  width: 67%;
+  padding-bottom: 60px;
+}
+
+.msgBoard{
+  float: right;
+  height: 100%;
+  width: 33%;
+  background-color: #F2F2F2;
+  padding-bottom: 60px;
+}
+
+.posts{
+ font-size: 150%;
+}
+
 .inputMessage {
   font-size: 100%;
 }
