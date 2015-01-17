@@ -51,6 +51,7 @@ ul {
 .login.page {
     background-color: #46A8C7;
     background-image: url("Untitled.jpg");
+    background-repeat: no-repeat;
     background-position: center;
 }
 
