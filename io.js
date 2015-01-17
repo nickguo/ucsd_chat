@@ -10,6 +10,8 @@ var usernames = {}; // double dictionary
 var numUsers = {};  // dictionary
 var getRooms = {};
 
+var board = {}; // double dictionary on rooms -> post -> {body: str, score: int}
+
 admin.on('boot', function(info) {
     debug('entered admin boot in io');
     var room = info.room;
@@ -53,14 +55,62 @@ io.on('connection', function (socket) {
     //console.dir[getRooms];
   });
 
+  socket.on('add body', function(data) {
+    socket.room = getRooms[socket.id];
+    var post = data.body;
+
+    console.log(post);
+
+    if (board[socket.room] == undefined) {
+      board[socket.room] = {};
+    }
+
+    board[socket.room][post] = {body: post, score: 0};
+    io.to(socket.room).emit('new body', {body: board[socket.room][post].body,
+                                         score: board[socket.room][post].score});
+  });
+
+  socket.on('like body', function(data) {
+    socket.room = getRooms[socket.id];
+    var post = data.body;
+
+    if (board[socket.room] != undefined) {
+      if (board[socket.room][post] != undefined) {
+        ++(board[socket.room][post][score]);
+      }
+    }
+  });
+
+  socket.on('dislike body', function(data) {
+    socket.room = getRooms[socket.id];
+    var post = data.body;
+
+    if (board[socket.room] != undefined) {
+      if (board[socket.room][post] != undefined) {
+        ++(board[socket.room][post][score]);
+      }
+    }
+  });
+
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     // we tell the client to execute 'new message'
     socket.room = getRooms[socket.id];
-    socket.broadcast.to(socket.room).emit('new message', {
-      username: socket.username,
-      message: data
-    });
+    if (data.replace(/ /g,"").toLowerCase().indexOf("fuck") > -1) {
+        io.to(socket.id).emit('new message',
+                              {username: "admin",
+                               message: "you have been booted for indecency: please do not use f*ck."});
+        io.to(socket.id).emit('new message',
+                              {username: "admin",
+                               message: "your messsages will no longer be broadcasted"});
+        socket.disconnect('unauthorized');
+    }
+    else {
+        socket.broadcast.to(socket.room).emit('new message', {
+          username: socket.username,
+          message: data
+        });
+    }
   });
 
   // when the client emits 'add user', this listens and executes
@@ -81,7 +131,7 @@ io.on('connection', function (socket) {
     // we store the username in the socket session for this client
     socket.username = username;
 
-    if (usernames[socket.room][socket.username] != undefined) {
+    if (usernames[socket.room][socket.username.toLowerCase()] != undefined) {
       io.to(socket.id).emit('invalid login', {});
       debug("INVALID LOGIN FOR: " + socket.username);
       return;
@@ -89,7 +139,7 @@ io.on('connection', function (socket) {
     debug("continue from invalid check for: " + socket.username);
 
     // add the client's username to the global list & save their socket
-    usernames[socket.room][socket.username] = socket;
+    usernames[socket.room][socket.username.toLowerCase()] = socket;
 
     //console.log("room is: " + socket.room);
     //console.dir(usernames);
@@ -134,8 +184,8 @@ io.on('connection', function (socket) {
       debug("\t with username: " + usernames[socket.room]);
 
       if (usernames[socket.room] != undefined) {
-        if (usernames[socket.room][socket.username] != undefined) {
-          delete usernames[socket.room][socket.username];
+        if (usernames[socket.room][socket.username.toLowerCase()] != undefined) {
+          delete usernames[socket.room][socket.username.toLowerCase()];
         }
       }
 
