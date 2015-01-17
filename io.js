@@ -48,6 +48,7 @@ io.on('connection', function (socket) {
     if (usernames[socket.room] == undefined) {
       usernames[socket.room] = {};
     }
+
     if (numUsers[socket.room] == undefined) {
       numUsers[socket.room] = 0;
     }
@@ -56,6 +57,14 @@ io.on('connection', function (socket) {
 
     // we store the username in the socket session for this client
     socket.username = username;
+
+    if (usernames[socket.room][socket.username] != undefined) {
+      io.to(socket.id).emit('invalid login', {});
+      debug("INVALID LOGIN FOR: " + socket.username);
+      return;
+    }
+    debug("continue from invalid check for: " + socket.username);
+
     // add the client's username to the global list
     usernames[socket.room][socket.username] = socket.username;
 
@@ -67,7 +76,7 @@ io.on('connection', function (socket) {
 
     ++(numUsers[socket.room]);
     addedUser = true;
-    socket.emit('login', {
+    socket.emit('valid login', {
       numUsers: numUsers[socket.room]
     });
     // echo globally (all clients) that a person has connected
@@ -100,8 +109,16 @@ io.on('connection', function (socket) {
     if (addedUser) {
       debug("trying to delete user: " + socket.username + " - from: " + socket.room);
       debug("\t with username: " + usernames[socket.room]);
-      delete usernames[socket.room][socket.username];
-      --(numUsers[socket.room]);
+
+      if (usernames[socket.room] != undefined) {
+        if (usernames[socket.room][socket.username] != undefined) {
+          delete usernames[socket.room][socket.username];
+        }
+      }
+
+      if (numUsers[socket.room] != undefined) {
+        --(numUsers[socket.room]);
+      }
 
       // echo globally that this client has left
       socket.broadcast.to(socket.room).emit('user left', {
