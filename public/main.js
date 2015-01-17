@@ -27,7 +27,13 @@ var typing = false;
 var lastTypingTime;
 var $currentInput = $usernameInput.focus();
 
-var socket = io();
+//TODO: CHANGE LOCALHOST to the host url in production
+var socket = io.connect("http://localhost:3000");
+
+//TODO: GET THE ROOM VALUE HERE, SIMILAR TO usernameInput
+socket.on('connect', function() {
+  socket.emit('join room', {room: "hardcode example"});
+});
 
 function addParticipantsMessage (data) {
     var message = '';

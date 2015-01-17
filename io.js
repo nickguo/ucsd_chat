@@ -9,21 +9,21 @@ var io = new SocketIO();
 var usernames = {};
 var numUsers = 0;
 
-pubsub.on('message', function(msg) {
-  // we tell the client to execute 'new message'
-  debug('entered ee on message with: ' + msg);
-  io.emit('new message', {
-    username: 'hal',
-    message: msg
-  });
-  debug('finished hal broadcast');
-});
 
 io.on('connection', function (socket) {
   var addedUser = false;
-  debug ("new connection: " + socket.id);
-  console.dir(socket);
+  debug ("new connection: " + socket.id +
+          "\n\t on ip: " + socket.handshake.address + 
+          "\n\t on room: " + socket.room);
 
+
+  // this function fires immediately after a connection
+  socket.on('join room', function(data) {
+    // remove all whitespace from the room data
+    var room = data.room.replace(/ /g,"");
+    socket.join(room);
+    debug("socket on ip: " + socket.handshake.address + " joined: " + room);
+  });
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
