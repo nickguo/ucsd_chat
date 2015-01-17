@@ -28,7 +28,7 @@ var lastTypingTime;
 var $currentInput = $topicInput.focus();
 
 //TODO: CHANGE LOCALHOST to the host url in production
-var socket = io.connect("http://localhost:3000");
+var socket = io.connect("http://tritonchat.me");
 
 //TODO: GET THE ROOM VALUE HERE, SIMILAR TO usernameInput
 socket.on('connect', function() {
