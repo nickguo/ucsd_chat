@@ -131,7 +131,7 @@ io.on('connection', function (socket) {
     // we store the username in the socket session for this client
     socket.username = username;
 
-    if (usernames[socket.room][socket.username] != undefined) {
+    if (usernames[socket.room][socket.username.toLowerCase()] != undefined) {
       io.to(socket.id).emit('invalid login', {});
       debug("INVALID LOGIN FOR: " + socket.username);
       return;
@@ -139,7 +139,7 @@ io.on('connection', function (socket) {
     debug("continue from invalid check for: " + socket.username);
 
     // add the client's username to the global list & save their socket
-    usernames[socket.room][socket.username] = socket;
+    usernames[socket.room][socket.username.toLowerCase()] = socket;
 
     //console.log("room is: " + socket.room);
     //console.dir(usernames);
@@ -184,8 +184,8 @@ io.on('connection', function (socket) {
       debug("\t with username: " + usernames[socket.room]);
 
       if (usernames[socket.room] != undefined) {
-        if (usernames[socket.room][socket.username] != undefined) {
-          delete usernames[socket.room][socket.username];
+        if (usernames[socket.room][socket.username.toLowerCase()] != undefined) {
+          delete usernames[socket.room][socket.username.toLowerCase()];
         }
       }
 
