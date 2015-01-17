@@ -110,6 +110,15 @@ ul {
 
 /* Chat page */
 
+.statusBar .chatRoomName{
+    display:inline-block;
+}
+
+.statusBar .userButton{
+    display:inline-block;
+    right: 0px;
+}
+
 .chat.page {
   display: none;
 }
