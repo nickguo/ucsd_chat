@@ -231,6 +231,7 @@ $window.keydown(function (event) {
         }
         else if(username && !topic){
             setTopic();
+            document.title=topic;
         }
         else if(username && topic){
             sendMessage();
