@@ -67,7 +67,7 @@ ul {
 .login.page .form .usernameInput {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #46A8c7;
     outline: none;
     padding-bottom: 20px;
     text-align: center;
@@ -77,7 +77,7 @@ ul {
 .login.page .form .topicInput {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #46a8c7;
     outline: none;
     padding-bottom: 20px;
     text-align: center;
