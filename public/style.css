@@ -109,25 +109,6 @@ ul {
 
 
 /* Chat page */
-.statusBar {
-    background-color:#F2F2F2;
-    font-size: 150%;
-    height: 5%;
-    position: absolute;
-    width: 67%;
-}
-
-.statusBar .chatRoomName{
-    display:inline-block;
-    color:#000000;
-}
-
-.statusBar .userButton{
-    display:inline-block;
-    position: relative;
-    right: 0px;
-}
-
 .chat.page {
     display: none;
     height: 100%;
@@ -152,8 +133,11 @@ ul {
 
 /* Messages */
 
-.chatArea {
+.chatSection {
+    height: 100%;
+}
 
+.chatArea {
     height: 100%;
     float: left;
     width: 67%;
