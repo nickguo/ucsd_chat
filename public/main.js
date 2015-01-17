@@ -61,7 +61,6 @@ function setUsername () {
         $currentInput = $topicInput.focus();
 
         // Tell the server your username
-        socket.emit('add user', username);
     }
 }
 
@@ -76,6 +75,7 @@ function setTopic (){
 
         //tell server the topic
         socket.emit('add topic', {topic: topic});
+        socket.emit('add user', username);
     }
 
 }
@@ -309,7 +309,8 @@ $inputMessage.click(function () {
 socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to Socket.IO Chat – ";
+    $(".chatRoomName").append(topic + " chatroom – UCSD Chat");
+    var message = "Welcome to the " + topic + " chatroom – UCSD Chat";
     log(message, {
         prepend: true
     });
