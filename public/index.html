@@ -8,7 +8,7 @@
     <body>
         <ul class="pages">
             <li class="chat page">
-            <div class="statusBar" align="right">
+            <div class="statusBar" align="left">
                 <div class="chatRoomName"></div>
                 <button class="userButton">Users</button>
             </div>
@@ -18,7 +18,10 @@
             </li>
             <li class="msg page">
             <div class="msgBoard">
-                <ul class="posts"><li>Posts</li></ul>
+                <ul class="posts"><ul>
+                        <li>New</li>
+                        <li id="selected">Hot</li>
+                </ul>
             </div>
 
             <input class="inputMessage" placeholder="Type here..."/>
