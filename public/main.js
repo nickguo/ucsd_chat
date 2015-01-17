@@ -224,15 +224,16 @@ $window.keydown(function (event) {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-        if (username) {
+        if (!username) {
+            setUsername();
+        }
+        else if(username && !topic){
             setTopic();
         }
         else if(username && topic){
             sendMessage();
             socket.emit('stop typing');
             typing = false;
-        } else {
-            setUsername();
         }
     }
 });
