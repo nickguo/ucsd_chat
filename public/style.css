@@ -142,6 +142,7 @@ ul {
     float: left;
     width: 67%;
     padding-bottom: 60px;
+    overflow-y: scroll;
 }
 
 .messages {
@@ -155,8 +156,19 @@ ul {
     float: right;
     height: 100%;
     width: 33%;
-    background-color: #F2F2F2;
     padding-bottom: 60px;
+}
+
+.new {
+    background-color:#b5ecdf;
+    float: right;
+    height: 50%;
+}
+
+.hot {
+    background-color:#65a954;
+    float: right;
+    height: 50%;
 }
 
 .message.typing .messageBody {
