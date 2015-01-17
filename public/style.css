@@ -54,7 +54,7 @@ ul {
 
 .login.page .form {
   height: 100px;
-  margin-top: -100px;
+  margin-top: -200px;
   position: absolute;
 
   text-align: center;
@@ -67,10 +67,21 @@ ul {
   border: none;
   border-bottom: 2px solid #fff;
   outline: none;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
   text-align: center;
   width: 400px;
 }
+
+.login.page .form .topicInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  padding-bottom: 20px;
+  text-align: center;
+  width: 400px;
+}
+
 
 .login.page .title {
   font-size: 200%;
@@ -81,10 +92,21 @@ ul {
   letter-spacing: 3px;
 }
 
+.login.page .topicInput{
+  font-size: 200%;
+  letter-spacing: 3px;
+}
+
 .login.page .title, .login.page .usernameInput {
   color: #fff;
   font-weight: 100;
 }
+
+.login.page .title, .login.page .topicInput{
+  color: #fff;
+  font-weight: 100;
+}
+
 
 /* Chat page */
 

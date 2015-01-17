@@ -18,10 +18,10 @@ $(function() {
 
   // Prompt for setting a username
   var username;
+  var topic;
   var connected = false;
   var typing = false;
   var lastTypingTime;
-  var $currentInput = $usernameInput.focus();
 
   var socket = io();
 
@@ -34,13 +34,15 @@ $(function() {
     }
     log(message);
   }
-
+  // Sets the client's topic
+  
   // Sets the client's username
   function setUsername () {
     username = cleanInput($usernameInput.val().trim());
+    topic = cleanInput($topicInput.val().trim());
 
     // If the username is valid
-    if (username) {
+    if (username && topic) {
       $loginPage.fadeOut();
       $chatPage.show();
       $loginPage.off('click');
@@ -48,6 +50,9 @@ $(function() {
 
       // Tell the server your username
       socket.emit('add user', username);
+
+      // Tell the server your topic
+      socket.emit('add topic', topic);
     }
   }
 
