@@ -18,10 +18,8 @@
             </li>
             <li class="msg page">
             <div class="msgBoard">
-                <ul class="posts"><ul>
-                        <li>New</li>
-                        <li id="selected">Hot</li>
-                </ul>
+                <div id='newTab'>NewTab</div>
+                <div id='hotTab'>HotTab</div>
             </div>
 
             <input class="inputMessage" placeholder="Type here..."/>
@@ -29,13 +27,14 @@
 
             <li class="login page">
             <div class="form">
-                <div class="userCont">
-                    <h3 class="title">What's your nickname?</h3>
-                    <input class="usernameInput" type="text" maxlength="14" />
-                </div>
-                <div class="topicCont">
+                 <div class="topicCont">
                     <h3 class="title">What do you want to talk about?</h3>
                     <input class="topicInput" type="text" maxlength="14" />
+                </div>
+               <div class="userCont">
+                    <h3 class="title">What's your nickname?</h3>
+                    <input class="usernameInput" type="text" maxlength="14" />
+                    <h3 class="title" id="errorMes" style="color:red">Nickname taken</h3>
                 </div>
             </div>
             </li>

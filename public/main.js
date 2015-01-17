@@ -25,7 +25,7 @@ var topic;
 var connected = false;
 var typing = false;
 var lastTypingTime;
-var $currentInput = $usernameInput.focus();
+var $currentInput = $topicInput.focus();
 
 //TODO: CHANGE LOCALHOST to the host url in production
 var socket = io.connect("http://localhost:3000");
@@ -47,34 +47,31 @@ function addParticipantsMessage (data) {
 // Sets the client's topic
 
 // Sets the client's username
-function setUsername () {
-    username = cleanInput($usernameInput.val().trim());
+function setTopic () {
+    topic = cleanInput($topicInput.val().trim());
 
     // If the username is valid
-    if (username) {
-        $userCont.animate({
+    if (topic) {
+        $topicCont.animate({
             'marginTop' : "-=100px"
         });
-        $topicCont.delay(300).fadeIn( function() {
-            $topicInput.focus()});
-        $usernameInput.blur();
-        $currentInput = $topicInput.focus();
+        $userCont.delay(300).fadeIn( function() {
+            $usernameInput.focus()});
+        $topicInput.blur();
+        $currentInput = $usernameInput.focus();
 
         // Tell the server your username
+        socket.emit('add topic', {topic: topic});
     }
 }
 
-function setTopic (){
-    topic  = cleanInput($topicInput.val().trim());
+
+function setUsername (){
+    username  = cleanInput($usernameInput.val().trim());
     // if topic is valid
-    if(topic){
-        $loginPage.fadeOut();
-        $chatPage.show();
-        $loginPage.off('click');
-        $currentInput = $inputMessage.focus();
+    if(username){
 
         //tell server the topic
-        socket.emit('add topic', {topic: topic});
         socket.emit('add user', username);
     }
 
@@ -226,11 +223,11 @@ $window.keydown(function (event) {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-        if (!username) {
-            setUsername();
-        }
-        else if(username && !topic){
+        if (!topic) {
             setTopic();
+        }
+        else if(topic && !username){
+            setUsername();
             document.title=topic;
         }
         else if(username && topic){
@@ -306,7 +303,11 @@ $inputMessage.click(function () {
 // Socket events
 
 // Whenever the server emits 'login', log the login message
-socket.on('login', function (data) {
+socket.on('valid login', function (data) {
+        $loginPage.fadeOut();
+        $chatPage.show();
+        $loginPage.off('click');
+        $currentInput = $inputMessage.focus();
     connected = true;
     // Display the welcome message
     $(".chatRoomName").append(topic + " chatroom – UCSD Chat");
@@ -315,6 +316,11 @@ socket.on('login', function (data) {
         prepend: true
     });
     addParticipantsMessage(data);
+});
+
+socket.on('invalid login', function(data) {
+    username=null;
+    $("#errorMes").show();
 });
 
 // Whenever the server emits 'new message', update the chat body

@@ -1,3 +1,4 @@
 $(function(){
-    $(".topicCont").hide();
+    $(".userCont").hide();
+    $("#errorMes").hide();
 });
