@@ -2,10 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>UCSD Chat</title>
+        <title>Triton Chat</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+    <div class="mainPage">
         <ul class="pages">
             <li class="chat page">
                 <div class="chatArea">
@@ -13,19 +14,7 @@
                 </div>
                 <input class="inputMessage" placeholder="Type here..."/>
             </li>
-            
-            <li class="msg page">
-                <div class="msgBoard">
-                    <div class="new">
-                        <h3 class="title">New</h3>
-                        <hr>
-                    </div>
-                    <div class="hot">
-                        <h3 class="title">Hot</h3>
-                        <hr>
-                    </div>
-                </div>
-            </li>
+
             <li class="login page">
             <div class="form">
                  <div class="topicCont">
@@ -40,9 +29,24 @@
             </div>
             </li>
         </ul>
+    </div>
+                <!--<div class="msgBoard" id="test">
+                    <div class="new">
+                        <div class="titleDiv">
+                            <h3 class="title" id="addTitle">Events</h3>
+                        </div>
+                <div class="postForm">
+                    <input class="postInput" type="text" maxlength="140" />
+                    <button id="submitPost">Submit</button>
+                </div>
+                        <hr>
+                    </div>
+            </div>-->
+            
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
         <script src="http://tritonchat.me/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="http://tritonchat.me/main.js"></script>
         <script src="http://tritonchat.me/animations.js"></script>
     </body>

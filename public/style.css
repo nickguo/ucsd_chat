@@ -84,6 +84,12 @@ ul {
     width: 400px;
 }
 
+.msgPage {
+    width:100%;
+}
+.msgBoard {
+    widht:33%;
+}
 
 .login.page .title {
     font-size: 200%;
@@ -128,7 +134,7 @@ ul {
 
 .inputMessage {
     font-size: 100%;
-    color: #50C1E4;
+    color: #000;
 }
 
 .log {
@@ -143,7 +149,7 @@ ul {
 .chatArea {
     height: 100%;
     float: left;
-    width: 67%;
+    width: 100%;
     padding-bottom: 60px;
 }
 
@@ -155,18 +161,30 @@ ul {
 }
 
 .new{
-    height:50%;
+    height:100%;
     position:absolute;
-    width:100%;
+    width:33%;
     padding:0px;
     margin:0px;
     border: 2px solid;
+}
+.titleDiv{
+}
+
+#addTitle{
+    display:inline-block;
+}
+
+#addNew{
+    float:right;
+    height:100%;
+    display:inline-block;
 }
 
 .hot{
     height:50%;
     position:absolute;
-    width:100%;
+    width:33%;
     padding:0px;
     margin:0px;
     bottom: 0px;
@@ -204,5 +222,5 @@ ul {
     padding-left: 10px;
     position: absolute;
     right: 0;
-    width: 67%;
+    width: 100%;
 }
