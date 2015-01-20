@@ -1,7 +1,7 @@
 
-# Socket.IO Chat
+# Triton Chat
 
-A simple chat demo for socket.io
+A simple chat server for UCSD that supports multi-channel communcations between users
 
 ## How to use
 
