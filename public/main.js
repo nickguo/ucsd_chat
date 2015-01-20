@@ -273,7 +273,7 @@ $window.keydown(function (event) {
         }
         else if(topic && !username){
             setUsername();
-            document.title=topic;
+        //    document.title=topic;
         }
         else if(username && topic){
             sendMessage();
